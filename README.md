@@ -1,13 +1,10 @@
-# Azure AutoNumber
+# Az AutoNumber
 
-** This project is archived. I don't have time to maintain this anymore. ** 
+This project is forked from [0x414c49/AzureAutoNumber](0x414c49/AzureAutoNumber)
 
 ---
 
-
-![.NET Core](https://github.com/0x414c49/AzureAutoNumber/workflows/.NET%20Core/badge.svg)
-[![Build Status](https://img.shields.io/github/license/0x414c49/AzureAutoNumber)]()
-[![NuGet version (AzureAutoNumber)](https://img.shields.io/nuget/v/AzureAutoNumber.svg?style=flat-square)](https://www.nuget.org/packages/AzureAutoNumber/)
+[![NuGet version (AzureAutoNumber)](https://img.shields.io/nuget/v/AzAutoNumber.svg?style=flat-square)](https://www.nuget.org/packages/AzAutoNumber/)
 
 High performance, distributed unique thread-safe id generator for Azure.
 
@@ -51,16 +48,6 @@ services.AddAutoNumber(Configuration, x =>
 });
 ```
 
-
-#### Deprecated way to register the service:
-
-
-```
-// configure the services
-// you need to register an instane of CloudStorageAccount before using this
-serviceCollection.AddAutoNumber();
-```
-
 #### Inject `IUniqueIdGenerator` in constructor
 
 ```
@@ -85,9 +72,12 @@ These are default configuration for `AutoNumber`. If you prefer registering Auto
   }
 }
 ```
-### Support
-Support this proejct and me via [paypal](https://paypal.me/alibahraminezhad)
 
 
 ## Credits
-Most of the credits of this library goes to [Tatham Oddie](https://tatham.blog/2011/07/14/released-snowmaker-a-unique-id-generator-for-azure-or-any-other-cloud-hosting-environment/) for making SnowMaker. I forked his work and made lots of change to make it available on .NET Standard (2.0 and 2.1). SnowMaker is out-dated and is using very old version of Azure Packages.
+Most of the credits of this library goes to [Tatham Oddie](https://tatham.blog/2011/07/14/released-snowmaker-a-unique-id-generator-for-azure-or-any-other-cloud-hosting-environment/) for making SnowMaker.
+In this post https://itnext.io/generate-auto-increment-id-on-azure-62cc962b6fa6 Ali Bahraminezhad explained how he forked his work and made lots of change to make it available on .NET Standard (2.0 and 2.1). SnowMaker is out-dated and was using very old version of Azure Packages.
+
+Ali archived the repo and the nuget package. Now I'm forking his work and making it available for .NET 6.0 and beyond as long as I have a dependency on it myself.
+
+

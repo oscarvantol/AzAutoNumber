@@ -21,7 +21,14 @@ namespace AutoNumber.IntegrationTests
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddSingleton(new BlobServiceClient("UseDevelopmentStorage=true"));
             serviceCollection.AddSingleton<IConfiguration>(Configuration);
-            serviceCollection.AddAutoNumber();
+            serviceCollection.AddAutoNumber(Configuration, builder => {
+
+                return builder.UseDefaultContainerName()
+                    .UseDefaultStorageAccount()
+                    .SetBatchSize(50)
+                    .SetMaxWriteAttempts(25)
+                    .Options;
+            });
             return serviceCollection.BuildServiceProvider();
         }
 
@@ -63,18 +70,6 @@ namespace AutoNumber.IntegrationTests
             Assert.NotNull(uniqueId);
         }
 
-        [Test]
-        public void ShouldOptionsContainsDefaultValues()
-        {
-            var serviceProvider = GenerateServiceProvider();
-
-            var options = serviceProvider.GetService<IOptions<AutoNumberOptions>>();
-
-            Assert.NotNull(options.Value);
-            Assert.AreEqual(25, options.Value.MaxWriteAttempts);
-            Assert.AreEqual(50, options.Value.BatchSize);
-            Assert.AreEqual("unique-urls", options.Value.StorageContainerName);
-        }
 
         [Test]
         public void ShouldResolveUniqueIdGenerator()
